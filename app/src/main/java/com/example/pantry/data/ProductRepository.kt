@@ -1,0 +1,16 @@
+package com.example.pantry.data
+
+import com.example.pantry.data.dao.ProductDao
+import com.example.pantry.data.model.Product
+
+class ProductRepository(private val productDao: ProductDao) {
+    val allProducts = productDao.getAllProducts()
+
+    suspend fun insert(product: Product) {
+        productDao.insertProduct(product)
+    }
+
+    suspend fun delete(product: Product) {
+        productDao.deleteProduct(product)
+    }
+}

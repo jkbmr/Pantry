@@ -1,0 +1,21 @@
+package com.example.pantry.data.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.OnConflictStrategy
+import androidx.lifecycle.LiveData
+import com.example.pantry.data.model.Product
+
+@Dao
+interface ProductDao {
+    @Query("SELECT * FROM products ORDER BY expirationDate ASC")
+    fun getAllProducts(): LiveData<List<Product>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertProduct(product: Product)
+
+    @Delete
+    suspend fun deleteProduct(product: Product)
+}
