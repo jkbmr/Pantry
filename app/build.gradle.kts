@@ -70,6 +70,9 @@ dependencies {
     implementation("androidx.compose.runtime:runtime:$runtime_version")
     implementation("androidx.compose.runtime:runtime-livedata:$runtime_version")
 
+    val work_version = "2.11.0"
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
