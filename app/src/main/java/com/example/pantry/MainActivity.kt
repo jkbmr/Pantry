@@ -20,6 +20,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
 
+        scheduleExpiryWorker()
+
         val database = AppDatabase.getDatabase(applicationContext)
         val repository = ProductRepository(database.productDao())
 
@@ -62,4 +64,18 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    private fun scheduleExpiryWorker() {
+        val request = androidx.work.PeriodicWorkRequestBuilder<com.example.pantry.worker.ExpirationCheckWorker>(
+            1, java.util.concurrent.TimeUnit.DAYS
+        ).build()
+
+        androidx.work.WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "expiry_check_worker",
+            androidx.work.ExistingPeriodicWorkPolicy.UPDATE,
+            request
+        )
+
+    }
+
 }
