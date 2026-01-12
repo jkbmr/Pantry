@@ -2,10 +2,51 @@ package com.example.pantry.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// --- GŁÓWNY KOLOR APLIKACJI ---
+val AppTopBarBrown = Color(0xFF5D4037) // Ciemniejszy, bardziej elegancki brąz
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// --- ŻYWE KOLORY KAFELKÓW ---
+val VividRed = Color(0xFFD32F2F)
+val VividGreen = Color(0xFF388E3C)
+val VividOrange = Color(0xFFF57C00)
+val VividBlue = Color(0xFF1976D2)
+val VividPurple = Color(0xFF7B1FA2)
+val VividTeal = Color(0xFF00796B)
+val VividPink = Color(0xFFC2185B)
+val VividYellow = Color(0xFFFBC02D)
+val VividCyan = Color(0xFF0097A7)
+val VividBrown = Color(0xFF5D4037)
+val VividGrey = Color(0xFF616161)
+val VividIndigo = Color(0xFF303F9F)
+// NOWY KOLOR OD CIEBIE
+val VividBronze = Color(0xFFCD853F)
+
+// --- Paleta do wyboru (dla nowych kategorii) ---
+val CategoryPalette = listOf(
+    VividGreen,     // Warzywa
+    VividOrange,    // Nabiał
+    VividRed,       // Mięso
+    VividBlue,      // Mrożonki
+    Color(0xFF8D6E63), // Pieczywo (Brązowy jasny)
+    VividTeal,      // Napoje
+    VividPurple,    // Inne
+    VividPink,      // Słodycze/Inne
+    VividYellow,    // Owoce
+    VividIndigo,    // Chemia
+    VividCyan,      // Ryby
+    VividGrey,      // Inne
+    VividBrown,     // Ciemny brąz (Spiżarnia)
+    VividBronze     // <--- DODANY NOWY KOLOR
+)
+
+// Kolory systemowe (dostosowane do trybu ciemnego)
+val GreenPrimary = Color(0xFF2E7D32)
+val GreenSecondary = Color(0xFF4CAF50)
+val WhiteSurface = Color(0xFFFFFFFF)
+val DarkSurface = Color(0xFF1E1E1E)
+
+val LightBackground = Color(0xFFF5F5F5)
+
+val StatusFresh = Color(0xFF388E3C)
+val StatusWarning = Color(0xFFFFA000)
+val StatusExpired = Color(0xFFD32F2F)
