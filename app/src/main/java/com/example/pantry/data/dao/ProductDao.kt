@@ -6,19 +6,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
+import androidx.room.Update // <--- Ważne: import
 import com.example.pantry.data.model.Product
-import com.example.pantry.data.model.Space
 
 @Dao
 interface ProductDao {
-    // --- PRODUKTY ---
-    // ZMIANA: Sortowanie - najpierw te co mają datę, na końcu te bez daty (NULL)
-    @Query("SELECT * FROM products WHERE storageLocation = :location ORDER BY CASE WHEN expirationDate IS NULL THEN 1 ELSE 0 END, expirationDate ASC")
-    fun getProductsByLocation(location: String): LiveData<List<Product>>
-
-    @Query("SELECT * FROM products")
-    suspend fun getAllProductsSync(): List<Product>
+    @Query("SELECT * FROM products ORDER BY expirationDate ASC")
+    fun getAllProducts(): LiveData<List<Product>>
 
     @Query("SELECT * FROM products WHERE id = :id LIMIT 1")
     suspend fun getProductById(id: Int): Product?

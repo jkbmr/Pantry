@@ -1,20 +1,13 @@
 package com.example.pantry.data.local
 
 import android.content.Context
-import android.graphics.Color as AndroidColor
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.pantry.data.dao.ProductDao
 import com.example.pantry.data.model.Product
-import com.example.pantry.data.model.Space
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-// ZMIANA: Wersja 6
-@Database(entities = [Product::class, Space::class], version = 6, exportSchema = false)
+@Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 
@@ -28,31 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "larder_database"
-                )
-                    .addCallback(object : RoomDatabase.Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
-                            INSTANCE?.let { database ->
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    val dao = database.productDao()
-                                    dao.insertSpace(Space("Twoja Spiżarnia", AndroidColor.parseColor("#5D4037")))
-                                }
-                            }
-                        }
-                        override fun onOpen(db: SupportSQLiteDatabase) {
-                            super.onOpen(db)
-                            INSTANCE?.let { database ->
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    val dao = database.productDao()
-                                    if (dao.getSpacesCount() == 0) {
-                                        dao.insertSpace(Space("Twoja Spiżarnia", AndroidColor.parseColor("#5D4037")))
-                                    }
-                                }
-                            }
-                        }
-                    })
-                    .fallbackToDestructiveMigration()
-                    .build()
+                ).build()
                 INSTANCE = instance
                 instance
             }
